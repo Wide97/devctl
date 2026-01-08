@@ -1,9 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"devctl/cmd"
+	"fmt"
+	"os"
+)
 
 func main() {
-	fmt.Println("let's gowski ragaazzz")
+	if err := cmd.Execute(); err != nil {
+		fmt.Println(os.Stderr, err)
+		os.Exit(1)
+	}
 }
 
-//aggiungo os exit e gestione errore per il momento 
+//aggiungo os exit e gestione errore per il momento
