@@ -1,42 +1,31 @@
-<<<<<<< HEAD
 package cmd
 
 import (
 	"context"
+	"errors"
+	"fmt"
+	"os"
 
 	"devctl/internal/sysinfo"
-	"devctl/pkg/output"
-
-	"github.com/spf13/cobra"
 )
 
-var sysCmd = &cobra.Command{
-	Use:   "sys",
-	Short: "System related commands",
-}
+func SysInfo() error {
+	if len(os.Args) < 3 {
+		return errors.New("usage: devctl sys info")
+	}
 
-var sysInfoCmd = &cobra.Command{
-	Use:   "info",
-	Short: "Show system information of the target service",
-	Run: func(cmd *cobra.Command, args []string) {
-		info, err := sysinfo.GetInfo(context.Background())
-		if err != nil {
-			output.PrintError(err)
-			return
-		}
+	if os.Args[1] != "sys" || os.Args[2] != "info" {
+		return errors.New("unknown command")
+	}
 
-		output.PrintKeyValue(map[string]string{
-			"OS":      info.OS,
-			"Arch":    info.Arch,
-			"Runtime": info.Runtime,
-		})
-	},
-}
+	info, err := sysinfo.GetInfo(context.Background())
+	if err != nil {
+		return err
+	}
 
-func init() {
-	sysCmd.AddCommand(sysInfoCmd)
-	rootCmd.AddCommand(sysCmd)
+	fmt.Printf("OS: %s\n", info.OS)
+	fmt.Printf("Arch: %s\n", info.Arch)
+	fmt.Printf("Runtime: %s\n", info.Runtime)
+
+	return nil
 }
-=======
-package cmd
->>>>>>> origin/main
