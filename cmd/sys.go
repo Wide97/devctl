@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package cmd
 
 import (
@@ -36,3 +37,6 @@ func init() {
 	sysCmd.AddCommand(sysInfoCmd)
 	rootCmd.AddCommand(sysCmd)
 }
+=======
+package cmd
+>>>>>>> origin/main
