@@ -1,0 +1,30 @@
+# Go build artifacts
+/*.exe
+/*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Binaries and build dirs
+/bin/
+/dist/
+/build/
+
+# Coverage and profiling
+*.prof
+*.cov
+coverage/
+*.coverprofile
+*.trace
+
+# Vendor
+/vendor/
+
+# Logs and temp
+*.log
+*.tmp
+*.swp
+*.swo
+.DS_Store
