@@ -1,5 +1,6 @@
 package cmd
 
+<<<<<<< HEAD
 import "os"
 
 func Execute() error {
@@ -12,3 +13,8 @@ func Execute() error {
 
 //gestito da Wide
 //root minimale di gestione error per ora
+=======
+func Execute() error {
+	return nil
+}
+>>>>>>> origin/main
