@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package cmd
 
 func runPing(args []string) {
@@ -6,3 +7,6 @@ func runPing(args []string) {
 }
 
 
+=======
+package cmd
+>>>>>>> origin/main
