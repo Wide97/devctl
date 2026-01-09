@@ -1,0 +1,9 @@
+.git
+.gitignore
+bin
+dist
+build
+*.log
+*.out
+*.test
+*.tmp
