@@ -4,7 +4,6 @@ import (
 	"context"
 	"devctl/internal/ping"
 	"devctl/pkg/output"
-	"os"
 )
 
 func runPing(args []string) error {
@@ -14,7 +13,6 @@ func runPing(args []string) error {
 	err := ping.Check(context.Background(), baseURL)
 	if err != nil {
 		output.PrintError(err.Error())
-		os.Exit(1)
 	}
 
 	output.PrintSuccess("Service Reachable")
