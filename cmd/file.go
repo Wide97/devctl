@@ -16,6 +16,8 @@ func runFile(args []string) {
 	switch args[0] {
 	case "exists":
 		runFileExists(args[1:])
+	case "ls":
+		runFileLs(args[1:])
 	default:
 		fmt.Println("Unknown option:", args[0])
 		os.Exit(1)
@@ -41,5 +43,22 @@ func runFileExists(args []string) {
 		fmt.Println("file exists")
 	} else {
 		fmt.Println("file does not exist")
+	}
+}
+
+func runFileLs(args []string) {
+	path := "."
+	if len(args) >= 1 {
+		path = args[0]
+	}
+
+	files, err := file.ListFiles(path)
+	if err != nil {
+		fmt.Println("error:", err)
+		os.Exit(1)
+	}
+
+	for _, f := range files {
+		fmt.Println(f)
 	}
 }
