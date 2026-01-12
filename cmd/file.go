@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-func runFile(args []string) {
+func runFile(args []string) error {
 	if len(args) < 1 {
 		fmt.Println("Error! Missing option.")
 		os.Exit(1)
@@ -22,9 +22,11 @@ func runFile(args []string) {
 		fmt.Println("Unknown option:", args[0])
 		os.Exit(1)
 	}
+
+	return nil
 }
 
-func runFileExists(args []string) {
+func runFileExists(args []string) error {
 	if len(args) < 1 {
 		fmt.Println("Error! Missing path.")
 		os.Exit(1)
@@ -35,8 +37,7 @@ func runFileExists(args []string) {
 
 	exists, err := file.Exists(context.Background(), baseURL, path)
 	if err != nil {
-		fmt.Println("error:", err)
-		os.Exit(1)
+		return err
 	}
 
 	if exists {
@@ -44,9 +45,11 @@ func runFileExists(args []string) {
 	} else {
 		fmt.Println("file does not exist")
 	}
+
+	return nil
 }
 
-func runFileLs(args []string) {
+func runFileLs(args []string) error {
 	path := "."
 	if len(args) >= 1 {
 		path = args[0]
@@ -54,11 +57,12 @@ func runFileLs(args []string) {
 
 	files, err := file.ListFiles(path)
 	if err != nil {
-		fmt.Println("error:", err)
-		os.Exit(1)
+		return err
 	}
 
 	for _, f := range files {
 		fmt.Println(f)
 	}
+
+	return nil
 }
