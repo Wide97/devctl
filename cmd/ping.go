@@ -7,15 +7,17 @@ import (
 	"os"
 )
 
-func runPing(args []string) {
+func runPing(args []string) error {
 	// Base URL di esempio; in produzione si potrebbe leggere da flag o config
 	baseURL := "http://localhost:8080"
 
 	err := ping.Check(context.Background(), baseURL)
 	if err != nil {
-		output.Error(err.Error())
+		output.PrintError(err.Error())
 		os.Exit(1)
 	}
 
-	output.OK("service reachable")
+	output.PrintSuccess("Service Reachable")
+
+	return err
 }

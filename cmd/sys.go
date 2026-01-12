@@ -2,11 +2,10 @@ package cmd
 
 import (
 	"context"
-	"errors"
-	"fmt"
-	"os"
-
 	"devctl/internal/sysinfo"
+	"devctl/pkg/output"
+	"errors"
+	"os"
 )
 
 func SysInfo() error {
@@ -20,12 +19,13 @@ func SysInfo() error {
 
 	info, err := sysinfo.GetInfo(context.Background())
 	if err != nil {
+		output.PrintError(err.Error())
 		return err
 	}
 
-	fmt.Printf("OS: %s\n", info.OS)
-	fmt.Printf("Arch: %s\n", info.Arch)
-	fmt.Printf("Runtime: %s\n", info.Runtime)
+	output.PrintSuccess("OS: " + info.OS)
+	output.PrintSuccess("Arch: " + info.Arch)
+	output.PrintSuccess("Runtime: " + info.Runtime)
 
 	return nil
 }
