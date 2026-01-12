@@ -1,12 +1,15 @@
 BINARY=devctl
 
-.PHONY: build run test fmt vet clean check
+.PHONY: build run mock test fmt vet clean check
 
 build:
 	go build -o $(BINARY) .
 
 run:
 	go run .
+
+mock:
+	go run ./cmd/mockserver
 
 test:
 	go test ./...
