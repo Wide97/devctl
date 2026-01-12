@@ -1,21 +1,23 @@
-package cmd
+﻿package cmd
 
 import (
 	"context"
+	"devctl/internal/config"
 	"devctl/internal/ping"
 	"devctl/pkg/output"
 )
 
 func runPing(args []string) error {
-	// Base URL di esempio; in produzione si potrebbe leggere da flag o config
-	baseURL := "http://localhost:8080"
-
-	err := ping.Check(context.Background(), baseURL)
+	baseURL, err := config.BaseURL()
 	if err != nil {
+		return err
+	}
+
+	if err := ping.Check(context.Background(), baseURL); err != nil {
 		output.PrintError(err.Error())
+		return err
 	}
 
 	output.PrintSuccess("Service Reachable")
-
-	return err
+	return nil
 }

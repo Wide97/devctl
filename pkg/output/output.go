@@ -1,4 +1,4 @@
-package output
+﻿package output
 
 import (
 	"fmt"
@@ -14,10 +14,10 @@ var (
 
 // PrintSuccess prints a success message from stdout
 func PrintSuccess(msg string) {
-	fmt.Fprintf(stdout, msg)
+	fmt.Fprintln(stdout, msg)
 }
 
 // PrintError prints an error message stderr
 func PrintError(msg string) {
-	fmt.Fprintf(stderr, msg)
+	fmt.Fprintln(stderr, msg)
 }

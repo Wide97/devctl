@@ -45,6 +45,6 @@ func Calc() error {
 		return err
 	}
 
-	output.PrintSuccess("The result is: " + fmt.Sprintf("%f", res))
+	output.PrintSuccess("The result is: " + fmt.Sprintf("%.2f", res))
 	return nil
 }

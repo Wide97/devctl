@@ -1,4 +1,4 @@
-# Go build artifacts
+﻿# Go build artifacts
 /*.exe
 /*.exe~
 *.dll
@@ -29,3 +29,6 @@ coverage/
 *.swp
 *.swo
 .DS_Store
+
+# Local env
+.env

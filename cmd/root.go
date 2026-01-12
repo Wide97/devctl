@@ -1,13 +1,35 @@
-package cmd
+﻿package cmd
 
-import "os"
+import (
+	"devctl/internal/config"
+	"errors"
+	"os"
+)
 
 func Execute() error {
-	if len(os.Args) >= 3 && os.Args[1] == "sys" && os.Args[2] == "info" {
-		return SysInfo()
+	if err := config.LoadDefault(); err != nil {
+		return err
 	}
-	// per ora non fa nulla
-	return nil
+
+	if len(os.Args) < 2 {
+		return errors.New("usage: devctl <sys|calc|ping|file> ...")
+	}
+
+	switch os.Args[1] {
+	case "sys":
+		if len(os.Args) >= 3 && os.Args[2] == "info" {
+			return SysInfo()
+		}
+		return errors.New("usage: devctl sys info")
+	case "calc":
+		return Calc()
+	case "ping":
+		return runPing(os.Args[2:])
+	case "file":
+		return runFile(os.Args[2:])
+	default:
+		return errors.New("unknown command")
+	}
 }
 
 //gestito da Wide
