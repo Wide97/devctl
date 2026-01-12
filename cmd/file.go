@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"context"
+	"devctl/internal/config"
 	file "devctl/internal/fileutil"
 	"devctl/pkg/output"
 	"errors"
@@ -15,14 +16,12 @@ func runFile(args []string) error {
 
 	switch args[0] {
 	case "exists":
-		runFileExists(args[1:])
+		return runFileExists(args[1:])
 	case "ls":
-		runFileLs(args[1:])
+		return runFileLs(args[1:])
 	default:
 		return fmt.Errorf("invalid number: %s", args[0])
 	}
-
-	return nil
 }
 
 func runFileExists(args []string) error {
@@ -31,7 +30,10 @@ func runFileExists(args []string) error {
 	}
 
 	path := args[0]
-	baseURL := "http://localhost:8080"
+	baseURL, err := config.BaseURL()
+	if err != nil {
+		return err
+	}
 
 	exists, err := file.Exists(context.Background(), baseURL, path)
 	if err != nil {
