@@ -3,14 +3,14 @@ package cmd
 import (
 	"context"
 	file "devctl/internal/fileutil"
+	"devctl/pkg/output"
+	"errors"
 	"fmt"
-	"os"
 )
 
 func runFile(args []string) error {
 	if len(args) < 1 {
-		fmt.Println("Error! Missing option.")
-		os.Exit(1)
+		return errors.New("Error! Usage file <exists|ls>.")
 	}
 
 	switch args[0] {
@@ -19,8 +19,7 @@ func runFile(args []string) error {
 	case "ls":
 		runFileLs(args[1:])
 	default:
-		fmt.Println("Unknown option:", args[0])
-		os.Exit(1)
+		return fmt.Errorf("invalid number: %s", args[0])
 	}
 
 	return nil
@@ -28,8 +27,7 @@ func runFile(args []string) error {
 
 func runFileExists(args []string) error {
 	if len(args) < 1 {
-		fmt.Println("Error! Missing path.")
-		os.Exit(1)
+		return errors.New("Error! Missing path.")
 	}
 
 	path := args[0]
@@ -41,9 +39,9 @@ func runFileExists(args []string) error {
 	}
 
 	if exists {
-		fmt.Println("file exists")
+		output.PrintSuccess("file exists")
 	} else {
-		fmt.Println("file does not exist")
+		output.PrintSuccess("file does not exist")
 	}
 
 	return nil
@@ -61,7 +59,7 @@ func runFileLs(args []string) error {
 	}
 
 	for _, f := range files {
-		fmt.Println(f)
+		output.PrintSuccess(f)
 	}
 
 	return nil
