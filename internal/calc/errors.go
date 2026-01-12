@@ -3,8 +3,8 @@ package calc
 import "errors"
 
 var (
-	errDivisionByZero  = errors.New("Error division by Zero!")
-	errUnknowOperation = errors.New("Error unknow operation!")
-	errOverflow        = errors.New("Error overflow")
-	errUnderflow       = errors.New("Error underflow")
+	ErrDivisionByZero   = errors.New("Error division by Zero")
+	ErrUnknowOperation  = errors.New("Error unknow operation")
+	ErrAritmOverflow    = errors.New("Error number overflow")
+	ErrInvalidOperation = errors.New("Error invalid result")
 )
