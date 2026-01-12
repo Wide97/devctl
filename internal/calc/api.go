@@ -1,15 +1,15 @@
 package calc
 
-func Calculate(op string, x, y int) (int, error) {
+func Calculate(op string, x, y float64) (float64, error) {
 	switch op {
 	case "add":
-		return Add(x, y)
+		return add(x, y)
 	case "sub":
-		return Sub(x, y)
+		return sub(x, y)
 	case "mul":
-		return Mul(x, y)
+		return mul(x, y)
 	case "div":
-		return Div(x, y)
+		return div(x, y)
 	default:
 		return 0, ErrUnknowOperation
 	}
