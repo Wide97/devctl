@@ -1,6 +1,6 @@
 BINARY=devctl
 
-.PHONY: build run test fmt vet clean
+.PHONY: build run test fmt vet clean check
 
 build:
 	go build -o $(BINARY) .
@@ -16,6 +16,8 @@ fmt:
 
 vet:
 	go vet ./...
+
+check: fmt vet test
 
 clean:
 	go clean
