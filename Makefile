@@ -3,10 +3,14 @@ DEVCTL_BASE_URL ?= http://localhost:8080
 FILE_PATH ?= .
 DIR ?= .
 CALC_OP ?= add
+x ?=
+y ?=
+X ?= $(x)
+Y ?= $(y)
 X ?= 1
 Y ?= 1
 
-.PHONY: build run mock sys ping file-exists file-ls calc test fmt vet clean check
+.PHONY: build run mock demo help sys ping file-exists file-ls calc test fmt vet clean check
 
 build:
 	go build -o $(BINARY) .
@@ -16,6 +20,12 @@ run:
 
 mock:
 	go run ./cmd/mockserver
+
+demo:
+	go run ./cmd/demo
+
+help:
+	go run . help
 
 sys:
 	DEVCTL_BASE_URL=$(DEVCTL_BASE_URL) go run . sys info
