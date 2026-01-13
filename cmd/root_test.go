@@ -10,8 +10,8 @@ func TestExecuteNoArgs(t *testing.T) {
 	setArgs([]string{"devctl"})
 
 	err := Execute()
-	if err == nil || err.Error() != "usage: devctl <sys|calc|ping|file> ..." {
-		t.Fatalf("expected usage error, got %v", err)
+	if err != nil {
+		t.Fatalf("expected nil error, got %v", err)
 	}
 }
 

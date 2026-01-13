@@ -1,6 +1,7 @@
 package main
 
 import (
+	"devctl/internal/mockserver"
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
@@ -10,7 +11,7 @@ import (
 )
 
 func TestPingOK(t *testing.T) {
-	ts := httptest.NewServer(newMux())
+	ts := httptest.NewServer(mockserver.NewMux())
 	defer ts.Close()
 
 	resp, err := http.Get(ts.URL + "/ping")
@@ -25,7 +26,7 @@ func TestPingOK(t *testing.T) {
 }
 
 func TestSysInfoOK(t *testing.T) {
-	ts := httptest.NewServer(newMux())
+	ts := httptest.NewServer(mockserver.NewMux())
 	defer ts.Close()
 
 	resp, err := http.Get(ts.URL + "/sys/info")
@@ -55,7 +56,7 @@ func TestSysInfoOK(t *testing.T) {
 }
 
 func TestFileExists(t *testing.T) {
-	ts := httptest.NewServer(newMux())
+	ts := httptest.NewServer(mockserver.NewMux())
 	defer ts.Close()
 
 	dir := t.TempDir()
@@ -76,7 +77,7 @@ func TestFileExists(t *testing.T) {
 }
 
 func TestFileMissing(t *testing.T) {
-	ts := httptest.NewServer(newMux())
+	ts := httptest.NewServer(mockserver.NewMux())
 	defer ts.Close()
 
 	resp, err := http.Get(ts.URL + "/file/exists?path=/not-found")

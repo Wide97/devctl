@@ -12,10 +12,14 @@ func Execute() error {
 	}
 
 	if len(os.Args) < 2 {
-		return errors.New("usage: devctl <sys|calc|ping|file> ...")
+		return help()
 	}
 
 	switch os.Args[1] {
+	case "help", "-h", "--help":
+		return help()
+	case "doctor":
+		return Doctor()
 	case "sys":
 		if len(os.Args) >= 3 && os.Args[2] == "info" {
 			return SysInfo()

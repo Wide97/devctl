@@ -32,3 +32,4 @@ coverage/
 
 # Local env
 .env
+launch.json
