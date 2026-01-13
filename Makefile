@@ -3,10 +3,6 @@ DEVCTL_BASE_URL ?= http://localhost:8080
 FILE_PATH ?= .
 DIR ?= .
 CALC_OP ?= add
-x ?=
-y ?=
-X ?= $(x)
-Y ?= $(y)
 X ?= 1
 Y ?= 1
 
