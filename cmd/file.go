@@ -2,38 +2,38 @@ package cmd
 
 import (
 	"context"
+	"devctl/internal/config"
 	file "devctl/internal/fileutil"
+	"devctl/pkg/output"
+	"errors"
 	"fmt"
-	"os"
 )
 
 func runFile(args []string) error {
 	if len(args) < 1 {
-		fmt.Println("Error! Missing option.")
-		os.Exit(1)
+		return errors.New("Error! Usage file <exists|ls>.")
 	}
 
 	switch args[0] {
 	case "exists":
-		runFileExists(args[1:])
+		return runFileExists(args[1:])
 	case "ls":
-		runFileLs(args[1:])
+		return runFileLs(args[1:])
 	default:
-		fmt.Println("Unknown option:", args[0])
-		os.Exit(1)
+		return fmt.Errorf("unknown subcommand: %s", args[0])
 	}
-
-	return nil
 }
 
 func runFileExists(args []string) error {
 	if len(args) < 1 {
-		fmt.Println("Error! Missing path.")
-		os.Exit(1)
+		return errors.New("Error! Missing path.")
 	}
 
 	path := args[0]
-	baseURL := "http://localhost:8080"
+	baseURL, err := config.BaseURL()
+	if err != nil {
+		return err
+	}
 
 	exists, err := file.Exists(context.Background(), baseURL, path)
 	if err != nil {
@@ -41,9 +41,9 @@ func runFileExists(args []string) error {
 	}
 
 	if exists {
-		fmt.Println("file exists")
+		output.PrintSuccess("file exists")
 	} else {
-		fmt.Println("file does not exist")
+		output.PrintSuccess("file does not exist")
 	}
 
 	return nil
@@ -61,7 +61,7 @@ func runFileLs(args []string) error {
 	}
 
 	for _, f := range files {
-		fmt.Println(f)
+		output.PrintSuccess(f)
 	}
 
 	return nil

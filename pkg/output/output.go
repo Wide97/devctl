@@ -1,11 +1,23 @@
 package output
 
-import "fmt"
+import (
+	"fmt"
+	"io"
+	"os"
+)
 
-func OK(msg string) {
-	fmt.Printf("[OK] %s\n", msg)
+// configurable writer -> test and future formats
+var (
+	stdout io.Writer = os.Stdout
+	stderr io.Writer = os.Stderr
+)
+
+// PrintSuccess prints a success message from stdout
+func PrintSuccess(msg string) {
+	fmt.Fprintln(stdout, msg)
 }
 
-func Error(msg string) {
-	fmt.Printf("[ERROR] %s\n", msg)
+// PrintError prints an error message stderr
+func PrintError(msg string) {
+	fmt.Fprintln(stderr, msg)
 }

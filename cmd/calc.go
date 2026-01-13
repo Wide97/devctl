@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"devctl/internal/calc"
+	"devctl/pkg/output"
 	"errors"
 	"fmt"
 	"os"
@@ -44,6 +45,6 @@ func Calc() error {
 		return err
 	}
 
-	fmt.Printf("The result is: %f\n", res)
+	output.PrintSuccess("The result is: " + fmt.Sprintf("%.2f", res))
 	return nil
 }

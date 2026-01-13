@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"net/url"
 	"time"
 )
 
@@ -12,8 +13,8 @@ func Exists(ctx context.Context, baseURL, path string) (bool, error) {
 		Timeout: 3 * time.Second,
 	}
 
-	url := fmt.Sprintf("%s/file/exists?path=%s", baseURL, path)
-	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
+	endpoint := fmt.Sprintf("%s/file/exists?path=%s", baseURL, url.QueryEscape(path))
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, endpoint, nil)
 	if err != nil {
 		return false, err
 	}
