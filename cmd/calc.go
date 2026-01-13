@@ -12,7 +12,7 @@ import (
 var numberRegex = regexp.MustCompile(`^-?(0|[1-9]\d*)(\.\d+)?$`)
 
 func Calc() error {
-	if len(os.Args) < 5 {
+	if len(os.Args) != 5 {
 		return errors.New("usage: devctl calc <add|sub|mul|div> <val1> <val2>")
 	}
 
