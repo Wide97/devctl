@@ -24,6 +24,17 @@ Quick start
    make file-ls DIR=.
    make calc CALC_OP=add X=2 Y=3
 
+Docker
+1) Build image
+   docker build -t devctl .
+
+2) Run mock server
+   docker run --rm -p 8080:8080 devctl
+
+3) Use from host
+   set DEVCTL_BASE_URL=http://localhost:8080
+   devctl sys info
+
 Environment
 - DEVCTL_BASE_URL: base URL for remote service (used by sys/ping/file exists)
 
