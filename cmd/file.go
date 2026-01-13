@@ -20,7 +20,7 @@ func runFile(args []string) error {
 	case "ls":
 		return runFileLs(args[1:])
 	default:
-		return fmt.Errorf("invalid number: %s", args[0])
+		return fmt.Errorf("unknown subcommand: %s", args[0])
 	}
 }
 
