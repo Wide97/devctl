@@ -1,0 +1,134 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    
+    {
+      "name": "devctl: prompt args",
+      "type": "go",
+      "request": "launch",
+      "mode": "debug",
+      "program": "${workspaceFolder}",
+      "envFile": "${workspaceFolder}/.env",
+      "args": ["${input:cmd}", "${input:arg1}"]
+    },
+    {
+      "name": "devctl: sys info",
+      "type": "go",
+      "request": "launch",
+      "mode": "debug",
+      "program": "${workspaceFolder}",
+      "envFile": "${workspaceFolder}/.env",
+      "args": ["sys", "info"]
+    },
+    {
+      "name": "devctl: ping",
+      "type": "go",
+      "request": "launch",
+      "mode": "debug",
+      "program": "${workspaceFolder}",
+      "envFile": "${workspaceFolder}/.env",
+      "args": ["ping"]
+    },
+    {
+      "name": "devctl: file exists",
+      "type": "go",
+      "request": "launch",
+      "mode": "debug",
+      "program": "${workspaceFolder}",
+      "envFile": "${workspaceFolder}/.env",
+      "args": ["file", "exists", "${input:filePath}"]
+    },
+    {
+      "name": "devctl: file ls",
+      "type": "go",
+      "request": "launch",
+      "mode": "debug",
+      "program": "${workspaceFolder}",
+      "envFile": "${workspaceFolder}/.env",
+      "args": ["file", "ls", "${input:dirPath}"]
+    },
+    {
+      "name": "devctl: calc",
+      "type": "go",
+      "request": "launch",
+      "mode": "debug",
+      "program": "${workspaceFolder}",
+      "args": ["calc", "${input:calcOp}", "${input:calcX}", "${input:calcY}"]
+    },
+    {
+      "name": "devctl: doctor",
+      "type": "go",
+      "request": "launch",
+      "mode": "debug",
+      "program": "${workspaceFolder}",
+      "envFile": "${workspaceFolder}/.env",
+      "args": ["doctor"]
+    },
+    {
+      "name": "devctl: help",
+      "type": "go",
+      "request": "launch",
+      "mode": "debug",
+      "program": "${workspaceFolder}",
+      "args": ["help"]
+    },
+    {
+      "name": "mockserver",
+      "type": "go",
+      "request": "launch",
+      "mode": "debug",
+      "program": "${workspaceFolder}/cmd/mockserver"
+    },
+    {
+      "name": "demo",
+      "type": "go",
+      "request": "launch",
+      "mode": "debug",
+      "program": "${workspaceFolder}/cmd/demo"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "cmd",
+      "type": "promptString",
+      "description": "Command",
+      "default": "sys"
+    },
+    {
+      "id": "arg1",
+      "type": "promptString",
+      "description": "Arg",
+      "default": "info"
+    },
+    {
+      "id": "filePath",
+      "type": "promptString",
+      "description": "File path for file exists",
+      "default": "${workspaceFolder}/go.mod"
+    },
+    {
+      "id": "dirPath",
+      "type": "promptString",
+      "description": "Directory path for file ls",
+      "default": "${workspaceFolder}"
+    },
+    {
+      "id": "calcOp",
+      "type": "promptString",
+      "description": "Calc operation",
+      "default": "add"
+    },
+    {
+      "id": "calcX",
+      "type": "promptString",
+      "description": "Calc x",
+      "default": "4"
+    },
+    {
+      "id": "calcY",
+      "type": "promptString",
+      "description": "Calc y",
+      "default": "3"
+    }
+  ]
+}
